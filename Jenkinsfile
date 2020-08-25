@@ -2,32 +2,34 @@ pipeline {
     agent any
     tools {
         maven 'M2_HOME'
+    }
+
     stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-                sleep 1
-            }
-        }
-    }stage('build') {
+        
+       stage('build') {
             steps {
                 echo 'Hello build'
                 sh 'mvn clean'
-                sh 'mvn install'
+                sh  'mvn install'
                 sh 'mvn package'
+            }
+        }
+        stage('test') {
+            steps {
+                sh 'mvn test'
                 
-                 sleep 1 
-            }
-            }
-        }stage('deploy') {
-            steps {
-                echo 'Hello deploy'
-                sleep 1
             }
         }
-}stage('test') {
-            steps {
-                echo 'Hello test'
-                sleep 1
-            }
-        }
+        stage ('build and publish image') {
+      steps {
+        script {
+          checkout scm
+          docker.withRegistry('', 'dockerUserID') {
+          def customImage = docker.buid("sainteugene1/devops-pipeline:${env.BUILD_ID}")
+          customImage.push()
+          }
+    }
+        
+    }
+}
+

@@ -24,7 +24,7 @@ pipeline {
       steps {
         script {
           checkout scm
-          docker.withRegistry('', 'dockerUserID') {
+          docker.withRegistry('', 'sainteugene1') {
           def customImage = docker.build("sainteugene1/devops-pipeline:${env.BUILD_ID}")
           customImage.push()
           }

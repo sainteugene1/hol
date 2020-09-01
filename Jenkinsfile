@@ -3,6 +3,9 @@ pipeline {
     tools {
         maven 'M2_HOME'
     }
+    triggers {
+  pollSCM '* * * * *'
+}
 
     stages {
         
@@ -34,5 +37,4 @@ pipeline {
     }
 }
     }
-}   
-    
+

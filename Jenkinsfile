@@ -32,7 +32,7 @@ pipeline {
           def customImage = docker.build("sainteugene1/devops-pipeline:${env.BUILD_ID}")
           def customImage = docker.build("sainteugene1/devops-pipeline")
           customImage.push()
-          customImage.push()
+          customImage1.push()
     }
         
     }

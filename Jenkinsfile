@@ -1,12 +1,7 @@
 pipeline {
     agent any
-<<<<<<< HEAD
 triggers {
   pollSCM '* * * * *'
-=======
-    triggers {
-        pollSCM ('* * * * *')
->>>>>>> 3fb380f8529666590e0502e702dd3f7ffccdbade
 }
 
     tools {
